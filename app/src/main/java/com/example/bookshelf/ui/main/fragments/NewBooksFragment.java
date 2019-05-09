@@ -1,18 +1,13 @@
 package com.example.bookshelf.ui.main.fragments;
 
-import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 
 import com.example.bookshelf.R;
 import com.example.bookshelf.models.Book;
@@ -53,7 +48,7 @@ public class NewBooksFragment extends ListFragment {
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_new, container, false);
+        View root = inflater.inflate(R.layout.fragment_list, container, false);
         adapter = new NewBooksListAdapter(getActivity(), getContext(), data);
         setListAdapter(adapter);
         newBookViewModel.getBooks();

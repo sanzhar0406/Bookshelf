@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.example.bookshelf.R;
 import com.example.bookshelf.models.Book;
 import com.example.bookshelf.models.BookmarkedBookList;
+import com.example.bookshelf.models.HistoryList;
 import com.squareup.picasso.Picasso;
 
 import java.util.HashSet;
@@ -87,6 +88,19 @@ public class NewBooksListAdapter extends BaseAdapter {
         for (Book book : data){
             if (set.contains(book.getisbn13())){
                 this.data.add(book);
+            }
+        }
+        this.notifyDataSetChanged();
+    }
+
+    public void updateHistory(List<Book> data) {
+        this.data.clear();
+        List<String> set = HistoryList.getInstance().getSet();
+        for (String isbn : set) {
+            for (Book book : data) {
+                if (isbn.equals(book.getisbn13())) {
+                    this.data.add(book);
+                }
             }
         }
         this.notifyDataSetChanged();

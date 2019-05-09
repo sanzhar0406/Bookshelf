@@ -7,6 +7,7 @@ import android.util.Log;
 import com.example.bookshelf.models.Book;
 import com.example.bookshelf.models.DetailBook;
 import com.example.bookshelf.models.DetailBookGetter;
+import com.example.bookshelf.models.HistoryList;
 import com.example.bookshelf.models.NewBooksGetter;
 import com.example.bookshelf.ui.main.fragments.DetailBookFragment;
 import com.example.bookshelf.ui.main.fragments.NewBooksFragment;
@@ -39,5 +40,9 @@ public class DetailBookViewModel extends BookListViewModel {
     // TODO add Error type and handling for each type
     public void onError(){
         Log.d(TAG, "ERROR RETURNED");
+    }
+
+    public void updateHistory(String isbn) {
+        HistoryList.getInstance().addBook(isbn);
     }
 }

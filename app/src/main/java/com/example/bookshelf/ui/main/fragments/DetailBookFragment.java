@@ -53,9 +53,9 @@ public class DetailBookFragment extends Fragment{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // TODO handle arguments null case
         this.isbn = getArguments().getString(isbn_tag);
         detailBookViewModel = ViewModelProviders.of(this).get(DetailBookViewModel.class);
+        detailBookViewModel.updateHistory(isbn);
     }
 
     @Override
