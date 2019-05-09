@@ -4,6 +4,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ListFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,7 @@ import java.util.List;
 
 public class HistoryFragment extends ListFragment {
 
+    private static final String TAG = HistoryFragment.class.getName();
     private static HistoryFragment instance;
     private BooksListAdapter adapter;
     private HistoryViewModel historyViewModel;
@@ -55,6 +57,13 @@ public class HistoryFragment extends ListFragment {
         setListAdapter(adapter);
         adapter.update(HistoryList.getInstance().getSet());
         return root;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        adapter.update(HistoryList.getInstance().getSet());
+        Log.d(TAG, "history list size - " + HistoryList.getInstance().getSet().size());
     }
 
 

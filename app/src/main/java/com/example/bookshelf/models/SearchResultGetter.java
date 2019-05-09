@@ -70,15 +70,20 @@ public class SearchResultGetter {
         BookshelfApplication.getInstance().addToRequestQueue(jsonObjReq, "getRequest");
     }
     public void getBooks(final BookListViewModel bookListViewModel, String query, int total){
-        cashedArray = new ArrayList<>();
-        for (int i = 1; i < total; ++i) {
+        int N = total / 10;
+        if (total % 10 != 0){
+            N++;
+        }
+        for (int i = 1; i <= N; ++i) {
             String url = "https://api.itbook.store/1.0/search/" + query + "/" + i;
+            Log.d(TAG, url);
             JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
                     url, null,
                     new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
                             try {
+                                cashedArray = new ArrayList<>();
                                 JSONArray books = response.getJSONArray(books_tag);
                                 for (int i = 0; i < books.length(); ++i) {
                                     JSONObject object = (JSONObject) books.get(i);

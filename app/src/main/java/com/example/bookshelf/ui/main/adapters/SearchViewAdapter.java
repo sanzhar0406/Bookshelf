@@ -29,6 +29,7 @@ public class SearchViewAdapter extends RecyclerView.Adapter<SearchViewAdapter.Vi
         int idx = this.data.size();
         this.data.addAll(idx, data);
         this.notifyItemRangeInserted(idx, data.size());
+        Log.d(TAG, "data size - " + this.data.size());
     }
 
     @NonNull

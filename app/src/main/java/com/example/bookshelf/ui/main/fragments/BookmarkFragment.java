@@ -4,6 +4,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ListFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import com.example.bookshelf.R;
 import com.example.bookshelf.models.Book;
 import com.example.bookshelf.models.BookmarkedBookList;
 import com.example.bookshelf.models.BooksGetter;
+import com.example.bookshelf.models.HistoryList;
 import com.example.bookshelf.ui.main.adapters.BooksListAdapter;
 import com.example.bookshelf.ui.main.view_models.BookmarkedBookViewModel;
 
@@ -53,6 +55,13 @@ public class BookmarkFragment extends ListFragment {
         setListAdapter(adapter);
         adapter.update(BookmarkedBookList.getInstance().getBookmarkedSet());
         return root;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        adapter.update(BookmarkedBookList.getInstance().getBookmarkedSet());
+        Log.d(TAG, "bookmarked list size - " + BookmarkedBookList.getInstance().getBookmarkedSet().size());
     }
 
     @Override
