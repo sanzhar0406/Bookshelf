@@ -1,32 +1,30 @@
 package com.example.bookshelf.ui.main.fragments;
 
-import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.ListView;
 
 import com.example.bookshelf.R;
 import com.example.bookshelf.models.Book;
 import com.example.bookshelf.models.BookmarkedBookList;
-import com.example.bookshelf.models.NewBooksGetter;
-import com.example.bookshelf.ui.main.adapters.NewBooksListAdapter;
-import com.example.bookshelf.ui.main.view_models.BookmarkedBookViewModel;
+import com.example.bookshelf.models.BooksGetter;
+import com.example.bookshelf.models.HistoryList;
+import com.example.bookshelf.ui.main.adapters.BooksListAdapter;
 import com.example.bookshelf.ui.main.view_models.HistoryViewModel;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class HistoryFragment extends ListFragment {
 
     private static HistoryFragment instance;
-    private NewBooksListAdapter adapter;
+    private BooksListAdapter adapter;
     private HistoryViewModel historyViewModel;
     private static List<Book> data;
 
@@ -53,13 +51,19 @@ public class HistoryFragment extends ListFragment {
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_list, container, false);
-        adapter = new NewBooksListAdapter(getActivity(), getContext(), data);
+        adapter = new BooksListAdapter(getActivity(), getContext(), data);
         setListAdapter(adapter);
-        NewBooksGetter.getInstance().getBooks(historyViewModel);
+        adapter.update(HistoryList.getInstance().getSet());
         return root;
     }
 
-    public void updateBooks(List<Book> data) {
-        adapter.updateHistory(data);
+
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        DetailBookFragment detailBookFragment = DetailBookFragment.newInstance(data.get(position), data.get(position).getisbn13());
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(android.R.id.content, detailBookFragment, DetailBookFragment.TAG) //((ViewGroup)getView().getParent()).getId()
+                .addToBackStack(null)
+                .commit();
     }
 }

@@ -10,21 +10,8 @@ import com.example.bookshelf.ui.main.fragments.NewBooksFragment;
 
 import java.util.List;
 
-public class BookmarkedBookViewModel extends BookListViewModel{
+public class BookmarkedBookViewModel extends ViewModel{
     private static final String TAG = BookmarkedBookList.class.getName();
 
-    public void onSuccess(List<Book> data){
-        BookmarkFragment fragment = BookmarkFragment.getInstance();
-        if (fragment != null) {
-            fragment.updateBooks(data);
-        }
-        else{
-            // TODO handle null case
-        }
-    }
 
-    // TODO add Error type and handling for each type
-    public void onError(){
-        Log.d(TAG, "ERROR RETURNED");
-    }
 }

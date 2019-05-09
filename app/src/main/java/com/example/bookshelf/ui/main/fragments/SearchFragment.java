@@ -64,7 +64,7 @@ public class SearchFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_search, container, false);
         recyclerView = root.findViewById(R.id.recycler_view);
         manager = new LinearLayoutManager(getActivity());
-        adapter = new SearchViewAdapter(data);
+        adapter = new SearchViewAdapter(data, getActivity());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(manager);
         search_query = root.findViewById(R.id.search_input);

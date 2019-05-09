@@ -1,15 +1,18 @@
 package com.example.bookshelf.models;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
 public class BookmarkedBookList {
-    private HashSet<String> bookmarked;
+    private static final String TAG = BookmarkedBookList.class.getName();
+    private List<Book> bookmarked;
     private static BookmarkedBookList instance;
 
     private BookmarkedBookList(){
-        bookmarked = new HashSet<>();
+        bookmarked = new ArrayList<>();
     }
 
     public static BookmarkedBookList getInstance(){
@@ -20,22 +23,21 @@ public class BookmarkedBookList {
         return instance;
     }
 
-    public HashSet<String> getBookmarkedSet(){
+    public List<Book> getBookmarkedSet(){
         return bookmarked;
     }
 
-    public void addBook(String isbn){
-        bookmarked.add(isbn);
+    public void addBook(Book book){
+        bookmarked.add(book);
+        Log.d(TAG, "size - " + bookmarked.size());
     }
 
-    public void removeBook(String isbn){
-        if (bookmarked.contains(isbn)) {
-            bookmarked.remove(isbn);
-        }
+    public void removeBook(Book book){
+        bookmarked.remove(book);
     }
 
-    public boolean isInSet(String isbn){
-        return bookmarked.contains(isbn);
+    public boolean isInSet(Book book){
+        return bookmarked.contains(book);
     }
 
 }

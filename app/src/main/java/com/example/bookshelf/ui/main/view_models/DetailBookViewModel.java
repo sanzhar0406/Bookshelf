@@ -1,18 +1,11 @@
 package com.example.bookshelf.ui.main.view_models;
-
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.ViewModel;
 import android.util.Log;
 
 import com.example.bookshelf.models.Book;
 import com.example.bookshelf.models.DetailBook;
 import com.example.bookshelf.models.DetailBookGetter;
 import com.example.bookshelf.models.HistoryList;
-import com.example.bookshelf.models.NewBooksGetter;
 import com.example.bookshelf.ui.main.fragments.DetailBookFragment;
-import com.example.bookshelf.ui.main.fragments.NewBooksFragment;
-
-import java.util.List;
 
 public class DetailBookViewModel extends BookListViewModel {
     private static final String TAG = DetailBookViewModel.class.getName();
@@ -42,7 +35,7 @@ public class DetailBookViewModel extends BookListViewModel {
         Log.d(TAG, "ERROR RETURNED");
     }
 
-    public void updateHistory(String isbn) {
-        HistoryList.getInstance().addBook(isbn);
+    public void updateHistory(Book book) {
+        HistoryList.getInstance().addBook(book);
     }
 }

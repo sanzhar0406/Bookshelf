@@ -16,7 +16,6 @@ public class DetailBook {
     private String pages;
     private String rating;
 
-
     public String getTitle() {
         return this.title;
     }

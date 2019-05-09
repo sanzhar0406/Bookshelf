@@ -1,6 +1,5 @@
 package com.example.bookshelf.models;
 
-import android.app.DownloadManager;
 import android.util.Log;
 
 import com.android.volley.Request;
@@ -9,7 +8,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.bookshelf.BookshelfApplication;
 import com.example.bookshelf.ui.main.view_models.BookListViewModel;
-import com.example.bookshelf.ui.main.view_models.NewBookViewModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,7 +16,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NewBooksGetter {
+public class BooksGetter {
 
     private static final String books_tag = "books";
     private static final String title_tag = "title";
@@ -27,16 +25,16 @@ public class NewBooksGetter {
     private static final String price_tag = "price";
     private static final String image_tag = "image";
     private static final String url_tag = "url";
-    private static final String TAG = NewBooksGetter.class.getName();
+    private static final String TAG = BooksGetter.class.getName();
 
     private static List<Book> cashedArray = null;
-    private static NewBooksGetter instance = null;
-    private NewBooksGetter(){
+    private static BooksGetter instance = null;
+    private BooksGetter(){
 
     }
-    public static NewBooksGetter getInstance(){
+    public static BooksGetter getInstance(){
         if (instance == null){
-            instance = new NewBooksGetter();
+            instance = new BooksGetter();
         }
         return instance;
     }
@@ -44,7 +42,6 @@ public class NewBooksGetter {
         if (cashedArray != null){
             bookListViewModel.onSuccess(cashedArray);
         }
-        Log.d(TAG, "cashed Array is null");
         String url = "https://api.itbook.store/1.0/new";
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
                 url, null,
@@ -82,8 +79,6 @@ public class NewBooksGetter {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         cashedArray = null;
-                        //Failure Callback
-                        Log.d(TAG, "ERROR response");
                         Log.d(TAG, error.networkResponse.toString());
                         bookListViewModel.onError();
                     }

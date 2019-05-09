@@ -11,7 +11,7 @@ import android.widget.ListView;
 
 import com.example.bookshelf.R;
 import com.example.bookshelf.models.Book;
-import com.example.bookshelf.ui.main.adapters.NewBooksListAdapter;
+import com.example.bookshelf.ui.main.adapters.BooksListAdapter;
 import com.example.bookshelf.ui.main.view_models.NewBookViewModel;
 
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ public class NewBooksFragment extends ListFragment {
     private static final String TAG = NewBooksFragment.class.getName();
     private NewBookViewModel newBookViewModel;
     private static NewBooksFragment fragment;
-    private NewBooksListAdapter adapter;
+    private BooksListAdapter adapter;
     private List<Book> data;
 
     public static NewBooksFragment newInstance() {
@@ -49,7 +49,7 @@ public class NewBooksFragment extends ListFragment {
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_list, container, false);
-        adapter = new NewBooksListAdapter(getActivity(), getContext(), data);
+        adapter = new BooksListAdapter(getActivity(), getContext(), data);
         setListAdapter(adapter);
         newBookViewModel.getBooks();
         return root;
@@ -61,7 +61,7 @@ public class NewBooksFragment extends ListFragment {
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-        DetailBookFragment detailBookFragment = DetailBookFragment.newInstance(data.get(position).getisbn13());
+        DetailBookFragment detailBookFragment = DetailBookFragment.newInstance(data.get(position), data.get(position).getisbn13());
         getActivity().getSupportFragmentManager().beginTransaction()
                 .replace(android.R.id.content, detailBookFragment, DetailBookFragment.TAG) //((ViewGroup)getView().getParent()).getId()
                 .addToBackStack(null)

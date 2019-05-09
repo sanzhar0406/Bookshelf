@@ -1,5 +1,6 @@
 package com.example.bookshelf.ui.main.view_models;
 
+import android.arch.lifecycle.ViewModel;
 import android.util.Log;
 
 import com.example.bookshelf.models.Book;
@@ -9,21 +10,7 @@ import com.example.bookshelf.ui.main.fragments.HistoryFragment;
 
 import java.util.List;
 
-public class HistoryViewModel extends BookListViewModel {
+public class HistoryViewModel extends ViewModel {
     private static final String TAG = HistoryViewModel.class.getName();
 
-    public void onSuccess(List<Book> data){
-        HistoryFragment fragment = HistoryFragment.getInstance();
-        if (fragment != null) {
-            fragment.updateBooks(data);
-        }
-        else{
-            // TODO handle null case
-        }
-    }
-
-    // TODO add Error type and handling for each type
-    public void onError(){
-        Log.d(TAG, "ERROR RETURNED");
-    }
 }

@@ -19,14 +19,14 @@ import com.squareup.picasso.Picasso;
 import java.util.HashSet;
 import java.util.List;
 
-public class NewBooksListAdapter extends BaseAdapter {
+public class BooksListAdapter extends BaseAdapter {
 
     private final Context context;
     private final Activity activity;
     private final List<Book> data;
     private LayoutInflater inflater;
 
-    public NewBooksListAdapter(Activity activity, Context context, List<Book> data){
+    public BooksListAdapter(Activity activity, Context context, List<Book> data){
         this.context = context;
         this.activity = activity;
         inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -82,27 +82,4 @@ public class NewBooksListAdapter extends BaseAdapter {
         this.notifyDataSetChanged();
     }
 
-    public void updateBookmarked(List<Book> data) {
-        this.data.clear();
-        HashSet<String> set = BookmarkedBookList.getInstance().getBookmarkedSet();
-        for (Book book : data){
-            if (set.contains(book.getisbn13())){
-                this.data.add(book);
-            }
-        }
-        this.notifyDataSetChanged();
-    }
-
-    public void updateHistory(List<Book> data) {
-        this.data.clear();
-        List<String> set = HistoryList.getInstance().getSet();
-        for (String isbn : set) {
-            for (Book book : data) {
-                if (isbn.equals(book.getisbn13())) {
-                    this.data.add(book);
-                }
-            }
-        }
-        this.notifyDataSetChanged();
-    }
 }

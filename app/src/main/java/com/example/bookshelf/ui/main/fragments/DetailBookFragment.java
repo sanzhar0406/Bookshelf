@@ -15,9 +15,11 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.bookshelf.R;
+import com.example.bookshelf.models.Book;
 import com.example.bookshelf.models.BookmarkedBookList;
 import com.example.bookshelf.models.DetailBook;
 import com.example.bookshelf.models.PersistantStorage;
@@ -34,11 +36,13 @@ public class DetailBookFragment extends Fragment{
     private DetailBookViewModel detailBookViewModel;
     private View view;
     private EditText note;
+    private Book book;
 
-    public static DetailBookFragment newInstance(String isbn) {
+    public static DetailBookFragment newInstance(Book book, String isbn) {
         DetailBookFragment fragment = new DetailBookFragment();
         Bundle bundle = new Bundle();
         bundle.putString(isbn_tag, isbn);
+        fragment.book = book;
         fragment.setArguments(bundle);
         instance = fragment;
         return fragment;
@@ -55,7 +59,6 @@ public class DetailBookFragment extends Fragment{
         super.onCreate(savedInstanceState);
         this.isbn = getArguments().getString(isbn_tag);
         detailBookViewModel = ViewModelProviders.of(this).get(DetailBookViewModel.class);
-        detailBookViewModel.updateHistory(isbn);
     }
 
     @Override
@@ -91,17 +94,17 @@ public class DetailBookFragment extends Fragment{
         });
 
         CheckBox checkBox = view.findViewById(R.id.bookmarked);
-        if (BookmarkedBookList.getInstance().isInSet(isbn)){
+        if (BookmarkedBookList.getInstance().isInSet(book)){
             checkBox.setChecked(true);
         }
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
                 if (isChecked){
-                    BookmarkedBookList.getInstance().addBook(isbn);
+                    BookmarkedBookList.getInstance().addBook(book);
                 }
                 else{
-                    BookmarkedBookList.getInstance().removeBook(isbn);
+                    BookmarkedBookList.getInstance().removeBook(book);
                 }
             }
         });
@@ -111,6 +114,10 @@ public class DetailBookFragment extends Fragment{
     }
 
     public void update(DetailBook detailBook){
+        detailBookViewModel.updateHistory(book);
+
+        ProgressBar progressBar = view.findViewById(R.id.progress_bar);
+        progressBar.setVisibility(View.GONE);
         TextView titleTextView = view.findViewById(R.id.title);
         TextView subTitleTextView = view.findViewById(R.id.subtitle);
         TextView priceTextView = view.findViewById(R.id.price);

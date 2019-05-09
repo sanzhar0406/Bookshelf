@@ -3,9 +3,7 @@ package com.example.bookshelf.ui.main.view_models;
 import android.util.Log;
 
 import com.example.bookshelf.models.Book;
-import com.example.bookshelf.models.NewBooksGetter;
 import com.example.bookshelf.models.SearchResultGetter;
-import com.example.bookshelf.ui.main.fragments.NewBooksFragment;
 import com.example.bookshelf.ui.main.fragments.SearchFragment;
 
 import java.util.List;
