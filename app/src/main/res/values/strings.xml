@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Bookshelf</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="history">History</string>
+    <string name="bookmark">Bookmark</string>
+    <string name="search">Search</string>
+    <string name="new_books">New</string>
+</resources>
