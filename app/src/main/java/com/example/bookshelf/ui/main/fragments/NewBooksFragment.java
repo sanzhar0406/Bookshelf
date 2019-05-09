@@ -61,14 +61,11 @@ public class NewBooksFragment extends ListFragment {
     }
 
     public void updateBooks(List<Book> books){
-        //ProgressBar progressBar = (ProgressBar) findView
         adapter.update(books);
     }
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-        Log.d(TAG, "pager id - " + R.id.view_pager);
-        Log.d(TAG, "id - " + ((ViewGroup)getView().getParent()).getId());
         DetailBookFragment detailBookFragment = DetailBookFragment.newInstance(data.get(position).getisbn13());
         getActivity().getSupportFragmentManager().beginTransaction()
                 .replace(android.R.id.content, detailBookFragment, DetailBookFragment.TAG) //((ViewGroup)getView().getParent()).getId()

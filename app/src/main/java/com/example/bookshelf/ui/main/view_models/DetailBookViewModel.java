@@ -13,7 +13,7 @@ import com.example.bookshelf.ui.main.fragments.NewBooksFragment;
 
 import java.util.List;
 
-public class DetailBookViewModel extends ViewModel {
+public class DetailBookViewModel extends BookListViewModel {
     private static final String TAG = DetailBookViewModel.class.getName();
 
     public void getDetailBook(String isbn13) {

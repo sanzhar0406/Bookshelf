@@ -57,13 +57,13 @@ public class NewBooksListAdapter extends BaseAdapter {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.book_list_item, parent, false);
-        TextView titleTextView = (TextView) rowView.findViewById(R.id.title);
-        TextView subTitleTextView = (TextView) rowView.findViewById(R.id.subtitle);
-        TextView priceTextView = (TextView) rowView.findViewById(R.id.price);
-        TextView urlTextView = (TextView) rowView.findViewById(R.id.url);
-        TextView isbn13TextView = (TextView) rowView.findViewById(R.id.isbn);
+        TextView titleTextView = rowView.findViewById(R.id.title);
+        TextView subTitleTextView = rowView.findViewById(R.id.subtitle);
+        TextView priceTextView = rowView.findViewById(R.id.price);
+        TextView urlTextView = rowView.findViewById(R.id.url);
+        TextView isbn13TextView = rowView.findViewById(R.id.isbn);
 
-        ImageView imageView = (ImageView) rowView.findViewById(R.id.image);
+        ImageView imageView = rowView.findViewById(R.id.image);
 
         titleTextView.setText(data.get(position).getTitle());
         subTitleTextView.setText(data.get(position).getSubTitle());
