@@ -31,7 +31,9 @@ public class HistoryList {
     }
 
     public void addBook(Book book){
-        data.add(0, book);
+        if (data.isEmpty() || !data.get(0).getisbn13().equals(book.getisbn13())) {
+            data.add(0, book);
+        }
     }
 
 }
