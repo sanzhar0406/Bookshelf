@@ -63,7 +63,6 @@ public class HistoryFragment extends ListFragment {
     public void onResume() {
         super.onResume();
         adapter.update(HistoryList.getInstance().getSet());
-        Log.d(TAG, "history list size - " + HistoryList.getInstance().getSet().size());
     }
 
 

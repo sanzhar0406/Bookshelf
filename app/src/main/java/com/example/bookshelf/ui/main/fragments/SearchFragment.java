@@ -57,6 +57,7 @@ public class SearchFragment extends Fragment {
         data = new ArrayList<>();
     }
 
+    // Utilizing Recycler View instead of simple ListView for efficient memory re-usage and smooth scrolling
     @Override
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container,

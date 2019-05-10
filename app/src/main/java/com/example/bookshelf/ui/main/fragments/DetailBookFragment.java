@@ -71,6 +71,7 @@ public class DetailBookFragment extends Fragment{
         final SharedPreferences.Editor editor = sharedPreferences.edit();
 
         note = view.findViewById(R.id.note);
+        // Saving note to shared preferences for isbn13
         String savedNote = sharedPreferences.getString(isbn, "");
         if (savedNote != null && !savedNote.equals("")){
             note.setText(savedNote);
@@ -93,6 +94,7 @@ public class DetailBookFragment extends Fragment{
             }
         });
 
+        // updating the bookmarked list by utilizing checkbox
         CheckBox checkBox = view.findViewById(R.id.bookmarked);
         if (BookmarkedBookList.getInstance().isInSet(book)){
             checkBox.setChecked(true);

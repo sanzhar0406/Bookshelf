@@ -34,6 +34,7 @@ public class Book {
         return this.url;
     }
 
+    // Builder design pattern is used for easier instantiation
     public static class Builder {
         private Book newBook;
 

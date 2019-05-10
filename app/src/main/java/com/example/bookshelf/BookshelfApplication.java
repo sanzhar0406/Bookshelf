@@ -25,12 +25,14 @@ public class BookshelfApplication extends Application {
         return mInstance;
     }
 
+    // Returns current Volley Request Queue
     public RequestQueue getRequestQueue() {
         if (requestQueue == null)
             requestQueue = Volley.newRequestQueue(getApplicationContext());
         return requestQueue;
     }
 
+    // adds HTTP request to Volley request Queue
     public void addToRequestQueue(Request request, String tag) {
         request.setTag(tag);
         getRequestQueue().add(request);

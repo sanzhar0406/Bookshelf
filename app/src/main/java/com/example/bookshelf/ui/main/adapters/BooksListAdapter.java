@@ -53,6 +53,7 @@ public class BooksListAdapter extends BaseAdapter {
         return 0;
     }
 
+    // Updating row of list view with values
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context
@@ -72,6 +73,7 @@ public class BooksListAdapter extends BaseAdapter {
         urlTextView.setText(data.get(position).getUrl());
         isbn13TextView.setText(data.get(position).getisbn13());
 
+        // Using Picasso library for memory efficient and fast upload of the image and putting into imageview
         Picasso.get().load(data.get(position).getImage()).resize(50,50).into(imageView);
         return rowView;
     }

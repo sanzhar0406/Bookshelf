@@ -41,6 +41,8 @@ public class SearchResultGetter {
         }
         return instance;
     }
+
+    // Gets total number of books for the query
     public void getTotal(final SearchListViewModel searchListViewModel, String query){
         String url = "https://api.itbook.store/1.0/search/" + query ;
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
@@ -69,6 +71,8 @@ public class SearchResultGetter {
                 });
         BookshelfApplication.getInstance().addToRequestQueue(jsonObjReq, "getRequest");
     }
+
+    // Gets books for certain query
     public void getBooks(final BookListViewModel bookListViewModel, String query, int total){
         int N = total / 10;
         if (total % 10 != 0){

@@ -41,6 +41,8 @@ public class DetailBookGetter {
         }
         return instance;
     }
+
+    // Gets details of the book by isbn
     public void getBooks(final DetailBookViewModel detailBookViewModel, String isbn13){
         if (cache != null){
             detailBookViewModel.onSuccess(cache);

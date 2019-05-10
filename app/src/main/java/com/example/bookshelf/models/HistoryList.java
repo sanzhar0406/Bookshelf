@@ -30,6 +30,7 @@ public class HistoryList {
         return data;
     }
 
+    // Adding new book to history list, if last visited book is same that was added before it we do not add this book
     public void addBook(Book book){
         if (data.isEmpty() || !data.get(0).getisbn13().equals(book.getisbn13())) {
             data.add(0, book);

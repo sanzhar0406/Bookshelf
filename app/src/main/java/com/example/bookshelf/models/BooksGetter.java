@@ -38,6 +38,7 @@ public class BooksGetter {
         }
         return instance;
     }
+    // Gets new books
     public void getBooks(final BookListViewModel bookListViewModel){
         if (cashedArray != null){
             bookListViewModel.onSuccess(cashedArray);

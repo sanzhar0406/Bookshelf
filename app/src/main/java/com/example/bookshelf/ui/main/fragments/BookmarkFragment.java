@@ -61,7 +61,6 @@ public class BookmarkFragment extends ListFragment {
     public void onResume() {
         super.onResume();
         adapter.update(BookmarkedBookList.getInstance().getBookmarkedSet());
-        Log.d(TAG, "bookmarked list size - " + BookmarkedBookList.getInstance().getBookmarkedSet().size());
     }
 
     @Override

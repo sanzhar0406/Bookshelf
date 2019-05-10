@@ -29,7 +29,6 @@ public class BookmarkedBookList {
 
     public void addBook(Book book){
         bookmarked.add(book);
-        Log.d(TAG, "size - " + bookmarked.size());
     }
 
     public void removeBook(Book book){

@@ -68,6 +68,7 @@ public class DetailBook {
         return this.rating;
     }
 
+    // Builder design pattern is used for easier instantiation
     public static class Builder {
         private DetailBook newDetailBook;
 

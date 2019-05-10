@@ -25,11 +25,11 @@ public class SearchViewAdapter extends RecyclerView.Adapter<SearchViewAdapter.Vi
     private FragmentActivity activity;
     private List<Book> data;
 
+    // Updating the list, using notifyItemRangeInserted instead of notifyDataSetChanged for efficiency
     public void update(List<Book> data){
         int idx = this.data.size();
         this.data.addAll(idx, data);
         this.notifyItemRangeInserted(idx, data.size());
-        Log.d(TAG, "data size - " + this.data.size());
     }
 
     @NonNull
@@ -43,6 +43,7 @@ public class SearchViewAdapter extends RecyclerView.Adapter<SearchViewAdapter.Vi
         return viewHolder;
     }
 
+    // Binds new row to list
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         viewHolder.titleTextView.setText(data.get(i).getTitle());
@@ -74,6 +75,7 @@ public class SearchViewAdapter extends RecyclerView.Adapter<SearchViewAdapter.Vi
         this.notifyDataSetChanged();
     }
 
+    // Custom View Holder for recycler view
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView titleTextView;
         public ImageView bookImage;
